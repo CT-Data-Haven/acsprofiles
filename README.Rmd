@@ -32,3 +32,4 @@ To install this package:
 devtools::install_github("CT-Data-Haven/acsprofiles")
 ```
 
+[See the vignette](https://github.com/CT-Data-Haven/acsprofiles/blob/master/vignettes/simple_profile.Rmd) for a common, simplified workflow using several of the functions here.
