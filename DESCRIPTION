@@ -1,0 +1,23 @@
+Package: acsprofiles
+Type: Package
+Date: 2017-02-01
+Title: Generate Profiles from ACS Data
+Version: 0.1.0
+Author: Camille Seaberry, DataHaven
+Description: Functions that were developed in-house for generating profiles of
+    ACS data for neighborhoods, towns, and regions. Includes functions for
+    making combined ACS geo.set objects for aggregating data over groups of 
+    block groups, tracts, towns, etc. As a warning, service from the Census API
+    can be spotty--nothing we can do about that one. Use of ACS package
+    requires an API key, which can be set with `api.key.install`.
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Depends: acs
+Imports: dplyr,
+    purrr,
+    stringr,
+    magrittr
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
