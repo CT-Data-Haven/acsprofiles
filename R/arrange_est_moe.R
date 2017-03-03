@@ -8,8 +8,8 @@
 #' @return Returns a tbl, making it useful in dplyr chaining
 #' @export
 arrange_est_moe <- function(.data, omit = 1) {
-  if(!is.numeric(omit)) stop("omit should be an integer corresponding to a column position")
-  if(omit > ncol(.data)) stop("omit should be an integer within the range from 1 to ncol")
+  if(!is.numeric(omit)) stop("omit should be an integer or vector of integers corresponding to a column position")
+  if(max(omit) > ncol(.data)) stop("omitted columns must be within the range from 1 to ncol")
   x <- c(1:ncol(.data))[-omit]
   half <- length(x) / 2
   est <- x[1:half]
