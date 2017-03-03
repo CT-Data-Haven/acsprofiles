@@ -29,7 +29,8 @@ Makes ACS table aggregated across a region of towns
 \examples{
 inner_ring <- c("Hamden", "East Haven", "West Haven")
 ct_towns <- get_town_names(state = 9)
-inner_ring_pops <- regional_table(inner_ring, name = "Inner Ring", ct_towns, table.number = "B01003")
+inner_ring_pops <- regional_table(inner_ring, name = "Inner Ring", ct_towns,
+  table.number = "B01003")
 
 }
 \seealso{

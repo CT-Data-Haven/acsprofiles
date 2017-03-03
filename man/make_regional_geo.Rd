@@ -24,7 +24,8 @@ Merge towns into an ACS geo set
 \examples{
 inner_ring <- c("Hamden", "East Haven", "West Haven")
 ct_towns <- get_town_names(state = 9, year = 2015)
-ir_geo <- make_regional_geo <- function(inner_ring, name = "Inner Ring", town_lookup = ct_towns, state = 9)
+ir_geo <- make_regional_geo(inner_ring, name = "Inner Ring",
+  town_lookup = ct_towns, state = 9)
 
 }
 \seealso{

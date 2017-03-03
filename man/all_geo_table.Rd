@@ -26,11 +26,15 @@ Makes an ACS table for state, regions, counties, and towns
 \examples{
 ct_towns <- get_town_names(state = 9)
 regions <- list(
-  "Greater New Haven" = c("Hamden", "East Haven", "West Haven", "Milford", "Orange", "Bethany", "Woodbridge", "North Haven", "Branford", "North Branford", "Madison", "Guilford", "New Haven"),
+  "Greater New Haven" = c("Hamden", "East Haven", "West Haven", "Milford",
+    "Orange", "Bethany", "Woodbridge", "North Haven", "Branford",
+    "North Branford", "Madison", "Guilford", "New Haven"),
   "Inner Ring" = c("Hamden", "East Haven", "West Haven"),
-  "Outer Ring" = c("Milford", "Orange", "Bethany", "Woodbridge", "North Haven", "Branford", "North Branford", "Madison", "Guilford")
+  "Outer Ring" = c("Milford", "Orange", "Bethany", "Woodbridge",
+    "North Haven", "Branford", "North Branford", "Madison", "Guilford")
 )
-populations <- all_geo_table(ct_towns, "B01003", 2015, regions = regions, state = 9)
+populations <- all_geo_table(ct_towns, "B01003", 2015, regions = regions,
+  state = 9)
 
 }
 \seealso{

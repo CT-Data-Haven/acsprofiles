@@ -50,11 +50,13 @@ beaver_hills_bg <- list(
   list(tract = 141400, block.group = 1:4),
   list(tract = 141300, block.group = 2)
 )
-beaver_hills_bg_geo <- make_neighborhood(beaver_hills_bg, name = "Beaver Hills", state = 9, county = 9, blocks = T)
+beaver_hills_bg_geo <- make_neighborhood(beaver_hills_bg,
+  name = "Beaver Hills", state = 9, county = 9, blocks = T)
 
 beaver_hills_tracts <- list(
   list(tract = 141400)
 )
-beaver_hills_tract_geo <- make_neighborhood(beaver_hills_tracts, name = "Beaver Hills", state = 9, county = 9, blocks = F)
+beaver_hills_tract_geo <- make_neighborhood(beaver_hills_tracts,
+  name = "Beaver Hills", state = 9, county = 9, blocks = F)
 
 }

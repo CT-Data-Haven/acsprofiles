@@ -20,12 +20,16 @@ Returns an \code{\link[acs]{acs-class}} object, as is standard from the \code{ac
 Calculates aggregated sums and percentages for groups of ACS variables
 }
 \examples{
-# Calculate the share of CT population below poverty and below 2x poverty (numerators), out of all residents for whom poverty status is determined (denominator)
-poverty_table <- acs.fetch(geography = geo.make(state = 9), endyear = 2015, table.number = "C17002", col.names = "pretty")
+# Calculate the share of CT population below poverty and below 2x poverty
+# (numerators), out of all residents for whom poverty status is determined
+# (denominator)
+poverty_table <- acs.fetch(geography = geo.make(state = 9),
+  endyear = 2015, table.number = "C17002", col.names = "pretty")
 pov_status_determined <- poverty[, 1]
 pov_groups <- list(
   below_poverty = 2:3,
   low_income = 2:7
 )
-share_in_poverty <- calc_acs_table(pov_groups, pov_status_determined, poverty_table)
+share_in_poverty <- calc_acs_table(pov_groups,
+  pov_status_determined, poverty_table)
 }
