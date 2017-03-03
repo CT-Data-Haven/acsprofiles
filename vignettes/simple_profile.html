@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Camille Seaberry" />
+
+<meta name="date" content="2017-03-02" />
+
+<title>Simple New Haven ACS profile</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Simple New Haven ACS profile</h1>
+<h4 class="author"><em>Camille Seaberry</em></h4>
+<h4 class="date"><em>2017-03-02</em></h4>
+
+
+
+<p>This vignette is intended to show a simple workflow with the <code>acsprofiles</code> package. This example will walk through calculations from a few ACS tables with a short list of New Haven neighborhoods, some by block group and some by tract only, plus New Haven and the Greater New Haven region.</p>
+<p>Note that <code>acsprofiles</code> imports the <code>acs</code> package, so its functions are already available. It imports some <code>dplyr</code> and <code>purrr</code> functions as well, but it’s best to load those entirely.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(acsprofiles)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(purrr)</code></pre></div>
+<div id="setup" class="section level2">
+<h2>Setup</h2>
+<p>First, get some variables to work with throughout the script. To keep it short, I’ll pick just two neighborhoods: Dwight and the Hill, which give us a mix of neighborhoods made up of only one tract, and neighborhoods that require aggregation of several tracts. <code>nhv_neighborhoods</code> has neighborhoods by both tract &amp; block group, while <code>nhv_tracts</code> has neighborhoods defined more simply by just tracts. This is necessary because some ACS tables aren’t available at the block group level but are still useful to us.</p>
+<p>This mini-profile will include:</p>
+<ul>
+<li>Total populations</li>
+<li>Population for whom poverty status is determined</li>
+<li>Number of residents below 1.00 x poverty level</li>
+<li>Percentage of residents below 1.00 x poverty level, out of number for whom status is determined</li>
+<li>Number of residents below 2.00 x poverty level</li>
+<li>Percentage of residents below 2.00 x poverty level, out of number for whom status is determined</li>
+<li>Number of residents ages 0-17 for whom poverty status is determined</li>
+<li>Number of residents ages 0-17 below 1.00 x poverty level</li>
+<li>Percentage of residents ages 0-17 below 1.00 x poverty level, out of number for whom status is determined</li>
+<li>Number of residents ages 0-17 below 2.00 x poverty level</li>
+<li>Percentage of residents ages 0-17 below 2.00 x poverty level, out of number for whom status is determined</li>
+<li>Margins of error for each at 90% confidence level</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;nhv_neighborhoods&quot;</span>)
+<span class="kw">data</span>(<span class="st">&quot;nhv_tracts&quot;</span>)
+<span class="kw">data</span>(<span class="st">&quot;regions&quot;</span>)
+
+<span class="co"># get neighborhoods that include block groups for Dwight &amp; Hill</span>
+bg &lt;-<span class="st"> </span>nhv_neighborhoods[<span class="kw">c</span>(<span class="st">&quot;dwight&quot;</span>, <span class="st">&quot;hill&quot;</span>)]
+
+<span class="co"># get neighborhoods defined only by tract for Dwight &amp; Hill</span>
+tracts &lt;-<span class="st"> </span>nhv_tracts[<span class="kw">c</span>(<span class="st">&quot;dwight&quot;</span>, <span class="st">&quot;hill&quot;</span>)]
+
+<span class="co"># copy Greater New Haven region from regions</span>
+gnh &lt;-<span class="st"> </span>regions$<span class="st">`</span><span class="dt">Greater New Haven</span><span class="st">`</span>
+
+<span class="co"># run get_town_names to save lookup list of all CT towns</span>
+ct_towns &lt;-<span class="st"> </span><span class="kw">get_town_names</span>(<span class="dt">state =</span> <span class="dv">9</span>)
+
+<span class="co"># save table numbers needed for convenience</span>
+<span class="co"># B01003: total population, available by block group</span>
+<span class="co"># C17002: ratio of income to poverty, available by block group</span>
+<span class="co"># B17024: ratio of income to poverty by sex &amp; age, available only by tract</span>
+pop_table_num &lt;-<span class="st"> &quot;B01003&quot;</span>
+pov_table_num &lt;-<span class="st"> &quot;C17002&quot;</span>
+pov_age_table_num &lt;-<span class="st"> &quot;B17024&quot;</span></code></pre></div>
+<p>My preferred method to pull all these tables is to vectorize as much of the process as possible. In doing full profiles, I keep all the table numbers saved in a named list, and then iterate over it with the <code>map</code> functions from the <code>purrr</code> package, part of the <a href="http://tidyverse.org/">Tidyverse</a>. For clarity and to focus on the <code>acsprofiles</code> functions, I’ll do these separately.</p>
+<p><code>acsprofiles</code> includes functions to make ACS geographies for groups of tracts, tracts plus block groups, and towns, which are called by the functions <code>neighborhood_table</code> and <code>regional_table</code>, so we don’t need to build the geographies manually. For the New Haven geography, it’s just the usual <code>geo.make</code> function from <code>acs</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nhv_geo &lt;-<span class="st"> </span><span class="kw">geo.make</span>(<span class="dt">state =</span> <span class="dv">9</span>, <span class="dt">county =</span> <span class="dv">9</span>, <span class="dt">county.subdivision =</span> <span class="st">&quot;New Haven&quot;</span>)</code></pre></div>
+<p><code>acs</code> includes a great <code>rbind</code> function, so we can stick all these tables together and work with them normally.</p>
+</div>
+<div id="fetch-tables-with-custom-geos" class="section level2">
+<h2>Fetch tables with custom geos</h2>
+<p>First I’ll get the total population tables. I’m also shortening the name listed for New Haven because it’s annoyingly long.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># keeping defaults of state = 9, county = 9 for New Haven County, CT</span>
+nhood_pop &lt;-<span class="st"> </span><span class="kw">neighborhood_table</span>(<span class="dt">neighborhood_list =</span> bg, <span class="dt">table.number =</span> pop_table_num, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">blocks =</span> T)
+
+city_pop &lt;-<span class="st"> </span><span class="kw">acs.fetch</span>(<span class="dt">geography =</span> nhv_geo, <span class="dt">endyear =</span> <span class="dv">2015</span>, <span class="dt">table.number =</span> pop_table_num, <span class="dt">col.names =</span> <span class="st">&quot;pretty&quot;</span>)
+<span class="kw">geography</span>(city_pop)$NAME &lt;-<span class="st"> &quot;New Haven&quot;</span>
+
+gnh_pop &lt;-<span class="st"> </span><span class="kw">regional_table</span>(gnh, <span class="dt">name =</span> <span class="st">&quot;Greater New Haven&quot;</span>, <span class="dt">town_lookup =</span> ct_towns, <span class="dt">table.number =</span> pop_table_num, <span class="dt">year =</span> <span class="dv">2015</span>)
+
+all_pops &lt;-<span class="st"> </span><span class="kw">list</span>(nhood_pop, city_pop, gnh_pop) %&gt;%<span class="st"> </span><span class="kw">reduce</span>(rbind.acs)
+<span class="kw">acs.colnames</span>(all_pops) &lt;-<span class="st"> &quot;num_total_pop&quot;</span>
+
+<span class="co"># clean up</span>
+<span class="kw">rm</span>(nhood_pop, city_pop, gnh_pop)</code></pre></div>
+<p>Next, poverty rates.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nhood_pov &lt;-<span class="st"> </span><span class="kw">neighborhood_table</span>(<span class="dt">neighborhood_list =</span> bg, <span class="dt">table.number =</span> pov_table_num, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">blocks =</span> T)
+
+city_pov &lt;-<span class="st"> </span><span class="kw">acs.fetch</span>(<span class="dt">geography =</span> nhv_geo, <span class="dt">endyear =</span> <span class="dv">2015</span>, <span class="dt">table.number =</span> pov_table_num, <span class="dt">col.names =</span> <span class="st">&quot;pretty&quot;</span>)
+<span class="kw">geography</span>(city_pov)$NAME &lt;-<span class="st"> &quot;New Haven&quot;</span>
+
+gnh_pov &lt;-<span class="st"> </span><span class="kw">regional_table</span>(gnh, <span class="dt">name =</span> <span class="st">&quot;Greater New Haven&quot;</span>, <span class="dt">town_lookup =</span> ct_towns, <span class="dt">table.number =</span> pov_table_num, <span class="dt">year =</span> <span class="dv">2015</span>)
+
+all_povs &lt;-<span class="st"> </span><span class="kw">list</span>(nhood_pov, city_pov, gnh_pov) %&gt;%<span class="st"> </span><span class="kw">reduce</span>(rbind.acs)
+<span class="kw">rm</span>(nhood_pov, city_pov, gnh_pov)</code></pre></div>
+<p>Last, poverty rates by age. Note that this table is only available by tract, not block group.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nhood_pov2 &lt;-<span class="st"> </span><span class="kw">neighborhood_table</span>(<span class="dt">neighborhood_list =</span> tracts, <span class="dt">table.number =</span> pov_age_table_num, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">blocks =</span> F)
+
+city_pov2 &lt;-<span class="st"> </span><span class="kw">acs.fetch</span>(<span class="dt">geography =</span> nhv_geo, <span class="dt">endyear =</span> <span class="dv">2015</span>, <span class="dt">table.number =</span> pov_age_table_num, <span class="dt">col.names =</span> <span class="st">&quot;pretty&quot;</span>)
+<span class="kw">geography</span>(city_pov2)$NAME &lt;-<span class="st"> &quot;New Haven&quot;</span>
+
+gnh_pov2 &lt;-<span class="st"> </span><span class="kw">regional_table</span>(gnh, <span class="dt">name =</span> <span class="st">&quot;Greater New Haven&quot;</span>, <span class="dt">town_lookup =</span> ct_towns, <span class="dt">table.number =</span> pov_age_table_num, <span class="dt">year =</span> <span class="dv">2015</span>)
+
+all_pov_age &lt;-<span class="st"> </span><span class="kw">list</span>(nhood_pov2, city_pov2, gnh_pov2) %&gt;%<span class="st"> </span><span class="kw">reduce</span>(rbind.acs)
+<span class="kw">rm</span>(nhood_pov2, city_pov2, gnh_pov2)</code></pre></div>
+</div>
+<div id="calculations" class="section level2">
+<h2>Calculations</h2>
+<p><code>acsprofiles</code> includes functions to make it easier to do calculations. For this mini-profile, I need to calculate total numbers and percentages of people under 1x the poverty line and 2x the poverty line. I also need to calculate the number of people with a poverty status ages 0-17, and then the total numbers and percentages of them under 1x the poverty line and 2x the poverty line.</p>
+<p>The function <code>calc_acs_table</code> calculates an aggregated sum and percentage over a given denominator. The function takes a named list of the column numbers that need to be added. Because the tables for each geography are bound together into a single ACS object, I can do each calculation once across all these geographies.</p>
+<p>First, calculate poverty and low-income rates. I’ll use <code>cbind.acs</code> from the <code>acs</code> package to bind the first column, number of people with poverty status determined, to the table that I calculate.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># all_povs@acs.colnames</span>
+<span class="co"># need to add columns 2 and 3 to get population below poverty, and columns 2 to 7 to get low-income</span>
+<span class="co"># Column 1 will be the denominator, as this has the total population with a poverty status</span>
+pov_groups &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="dt">poverty =</span> <span class="dv">2</span>:<span class="dv">3</span>,
+  <span class="dt">low_inc =</span> <span class="dv">2</span>:<span class="dv">7</span>
+)
+pov_calculated &lt;-<span class="st"> </span><span class="kw">calc_acs_table</span>(<span class="dt">groups =</span> pov_groups, <span class="dt">denom =</span> all_povs[, <span class="dv">1</span>], <span class="dt">table =</span> all_povs)
+pov_rates &lt;-<span class="st"> </span><span class="kw">cbind.acs</span>(all_povs[, <span class="dv">1</span>], pov_calculated)
+
+<span class="co"># manually set nicer column names</span>
+<span class="kw">acs.colnames</span>(pov_rates) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;num_pov_status&quot;</span>, <span class="st">&quot;num_poverty&quot;</span>, <span class="st">&quot;per_poverty&quot;</span>, <span class="st">&quot;num_low_inc&quot;</span>, <span class="st">&quot;per_low_inc&quot;</span>)
+<span class="kw">rm</span>(pov_groups, pov_calculated)
+pov_rates</code></pre></div>
+<pre><code>## ACS DATA: 
+##  2011 -- 2015 ;
+##   Estimates w/90% confidence intervals;
+##   for different intervals, see confint()
+##                   num_pov_status              num_poverty               
+## dwight            3875 +/- 776.707152020631   1461 +/- 414.039853154259 
+## hill              16246 +/- 1278.20655607769  7263 +/- 1059.85046115006 
+## New Haven         121961 +/- 552              32480 +/- 2311.81249239639
+## Greater New Haven 446402 +/- 861.266509275729 57059 +/- 2945.35430805871
+##                   per_poverty                             
+## dwight            0.377032258064516 +/- 0.130873674568179 
+## hill              0.447063892650499 +/- 0.0741159353182393
+## New Haven         0.266314641565746 +/- 0.01899362701244  
+## Greater New Haven 0.127819767832581 +/- 0.0066025934437306
+##                   num_low_inc                
+## dwight            2760 +/- 742.808185199921  
+## hill              11849 +/- 1350.31292669514 
+## New Haven         59530 +/- 3005.96523599326 
+## Greater New Haven 119776 +/- 4164.46995426789
+##                   per_low_inc                              
+## dwight            0.712258064516129 +/- 0.239014538481742  
+## hill              0.729348762772375 +/- 0.101001408112877  
+## New Haven         0.488106853830323 +/- 0.0247457488107175 
+## Greater New Haven 0.268314210061783 +/- 0.00934331996574811</code></pre>
+<p>Then, calculate poverty &amp; low-income rates for children, again using <code>cbind.acs</code> to bind the number with poverty status determined to the calculated table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># all_pov_age@acs.colnames</span>
+<span class="co"># This table has 131 columns! They're broken into small age groups. The relevant ones:</span>
+<span class="co"># * cols 2, 15, and 28 add up to the poverty status for ages 0-17--no percentage is needed, so I'll just use apply to add them</span>
+<span class="co"># * cols 3-5, 16-18, and 29-31 add up to ages 0-17 below 1.00x poverty line</span>
+<span class="co"># * cols 3-10, 16-23, and 29-36 add up to ages 0-17 below 2.00x poverty line</span>
+pov_determined &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="dt">X =</span> all_pov_age[, <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">15</span>, <span class="dv">28</span>)], <span class="dt">FUN =</span> sum, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">agg.term =</span> <span class="st">&quot;num_pov_status&quot;</span>)
+pov_age_groups &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="dt">poverty =</span> <span class="kw">c</span>(<span class="dv">3</span>:<span class="dv">5</span>, <span class="dv">16</span>:<span class="dv">18</span>, <span class="dv">29</span>:<span class="dv">31</span>),
+  <span class="dt">low_inc =</span> <span class="kw">c</span>(<span class="dv">3</span>:<span class="dv">10</span>, <span class="dv">16</span>:<span class="dv">23</span>, <span class="dv">29</span>:<span class="dv">36</span>)
+)
+child_pov_calculated &lt;-<span class="st"> </span><span class="kw">calc_acs_table</span>(<span class="dt">groups =</span> pov_age_groups, <span class="dt">denom =</span> pov_determined, <span class="dt">table =</span> all_pov_age)
+child_pov_rates &lt;-<span class="st"> </span><span class="kw">cbind.acs</span>(pov_determined, child_pov_calculated)
+<span class="kw">acs.colnames</span>(child_pov_rates) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;num_child_pov_status&quot;</span>, <span class="st">&quot;num_child_poverty&quot;</span>, <span class="st">&quot;per_child_poverty&quot;</span>, <span class="st">&quot;num_child_low_inc&quot;</span>, <span class="st">&quot;per_child_low_inc&quot;</span>)
+<span class="co"># clean up</span>
+<span class="kw">rm</span>(pov_determined, pov_age_groups, child_pov_calculated)
+child_pov_rates</code></pre></div>
+<pre><code>## ACS DATA: 
+##  2011 -- 2015 ;
+##   Estimates w/90% confidence intervals;
+##   for different intervals, see confint()
+##                   num_child_pov_status       num_child_poverty         
+## dwight            794 +/- 276.956675312223   354 +/- 199.612123880289  
+## hill              4938 +/- 526.835837809084  3053 +/- 473.338145515444 
+## New Haven         28547 +/- 1202.6279557702  10755 +/- 942.723183124293
+## Greater New Haven 94925 +/- 2087.00790607032 17047 +/- 1225.14529750557
+##                   per_child_poverty                       
+## dwight            0.445843828715365 +/- 0.295613613555214 
+## hill              0.618266504657756 +/- 0.116359478495905 
+## New Haven         0.376747118786563 +/- 0.0366396284191162
+## Greater New Haven 0.179583882012115 +/- 0.0134968781281885
+##                   num_child_low_inc         
+## dwight            700 +/- 285.643133997651  
+## hill              4519 +/- 563.046179278396 
+## New Haven         18086 +/- 1196.0656336506 
+## Greater New Haven 32929 +/- 1659.98795176351
+##                   per_child_low_inc                      
+## dwight            0.881612090680101 +/- 0.473273849460983
+## hill              0.915147833130822 +/- 0.150114298101587
+## New Haven         0.633551686692122 +/- 0.049677184544275
+## Greater New Haven 0.346894917039768 +/- 0.019078147183762</code></pre>
+</div>
+<div id="bind-tables-together-into-data-frame" class="section level2">
+<h2>Bind tables together into data frame</h2>
+<p>I’ll use the <code>cbind.acs</code> function from <code>acs</code> to bind all these tables together into one acs object, then extract the geography names, estimates, and margins of error to make a data frame.</p>
+<p>One trick is that I’ve used <code>acs.colnames</code> to give all my variables names starting either with “num” or “per”, based on whether they hold an integer, like a population, or a percentage. That simplifies rounding: the margins of error for population counts don’t need all the decimal places that they currently have, so I want to round those off to whole numbers. I also only want to report 3 decimal places for the percentages and their margins of error. Because I’ve named columns in this way, I can use the <code>mutate_at</code> function from <code>dplyr</code> to change columns based on the letters their names start with.</p>
+<p>I’ll also use the <code>arrange_est_moe</code> function from <code>acsprofiles</code>. When I make the data frame, all the estimates will get dumped in together, and all the margins of error will get dumped in together, but I want this rearranged so each variable is followed by the corresponding margin of error. I also want the names of margins of error columns to match their variables, but with “moe” stuck to the end without any extra typing. <code>arrange_est_moe</code> takes care of all of this. I’ll have the function omit the first column from the shuffling, as this holds the names of geographies.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">all_tables &lt;-<span class="st"> </span><span class="kw">list</span>(all_pops, pov_rates, child_pov_rates) %&gt;%<span class="st"> </span><span class="kw">reduce</span>(cbind.acs)
+
+profile_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name =</span> all_tables@geography$NAME, all_tables@estimate, all_tables@standard.error *<span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.95</span>), <span class="dt">row.names =</span> <span class="ot">NULL</span>) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">tbl_df</span>() %&gt;%
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(<span class="kw">starts_with</span>(<span class="st">&quot;per&quot;</span>)), <span class="kw">funs</span>(<span class="kw">round</span>(., <span class="dt">digits =</span> <span class="dv">3</span>))) %&gt;%
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(<span class="kw">starts_with</span>(<span class="st">&quot;num&quot;</span>)), <span class="kw">funs</span>(<span class="kw">round</span>(., <span class="dt">digits =</span> <span class="dv">0</span>))) %&gt;%
+<span class="st">  </span><span class="kw">arrange_est_moe</span>(<span class="dt">omit =</span> <span class="dv">1</span>) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">name =</span> stringr::<span class="kw">str_to_title</span>(name))
+profile_df</code></pre></div>
+<pre><code>## # A tibble: 4 × 23
+##                name num_total_pop num_total_pop_moe num_pov_status
+##               &lt;chr&gt;         &lt;dbl&gt;             &lt;dbl&gt;          &lt;dbl&gt;
+## 1            Dwight          3915               777           3875
+## 2              Hill         16792              1288          16246
+## 3         New Haven        130612                50         121961
+## 4 Greater New Haven        465068               147         446402
+## # ... with 19 more variables: num_pov_status_moe &lt;dbl&gt;, num_poverty &lt;dbl&gt;,
+## #   num_poverty_moe &lt;dbl&gt;, per_poverty &lt;dbl&gt;, per_poverty_moe &lt;dbl&gt;,
+## #   num_low_inc &lt;dbl&gt;, num_low_inc_moe &lt;dbl&gt;, per_low_inc &lt;dbl&gt;,
+## #   per_low_inc_moe &lt;dbl&gt;, num_child_pov_status &lt;dbl&gt;,
+## #   num_child_pov_status_moe &lt;dbl&gt;, num_child_poverty &lt;dbl&gt;,
+## #   num_child_poverty_moe &lt;dbl&gt;, per_child_poverty &lt;dbl&gt;,
+## #   per_child_poverty_moe &lt;dbl&gt;, num_child_low_inc &lt;dbl&gt;,
+## #   num_child_low_inc_moe &lt;dbl&gt;, per_child_low_inc &lt;dbl&gt;,
+## #   per_child_low_inc_moe &lt;dbl&gt;</code></pre>
+<p>Now all that’s missing is to give the data frame some nice, display-worthy names.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(profile_df) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Geography&quot;</span>, <span class="st">&quot;Total population&quot;</span>, <span class="st">&quot;MOE total population&quot;</span>, <span class="st">&quot;Population, poverty status determined&quot;</span>, <span class="st">&quot;MOE population poverty status determined&quot;</span>, <span class="st">&quot;Population in poverty&quot;</span>, <span class="st">&quot;MOE population in poverty&quot;</span>, <span class="st">&quot;Poverty rate&quot;</span>, <span class="st">&quot;MOE poverty rate&quot;</span>, <span class="st">&quot;Population low-income&quot;</span>, <span class="st">&quot;MOE population low-income&quot;</span>, <span class="st">&quot;Low-income rate&quot;</span>, <span class="st">&quot;MOE low-income rate&quot;</span>, <span class="st">&quot;Population ages 0-17, poverty status determined&quot;</span>, <span class="st">&quot;MOE population ages 0-17, poverty status determined&quot;</span>, <span class="st">&quot;Population ages 0-17 in poverty&quot;</span>, <span class="st">&quot;MOE population ages 0-17 in poverty&quot;</span>, <span class="st">&quot;Child poverty rate&quot;</span>, <span class="st">&quot;MOE child poverty rate&quot;</span>, <span class="st">&quot;Population ages 0-17 low-income&quot;</span>, <span class="st">&quot;MOE population ages 0-17 low income&quot;</span>, <span class="st">&quot;Child low-income rate&quot;</span>, <span class="st">&quot;MOE child low-income rate&quot;</span>)</code></pre></div>
+</div>
+<div id="finishing-up" class="section level2">
+<h2>Finishing up</h2>
+<p>Often, at this point I’ll write this to a csv file for use in visualizations or distribution. Note that for these small areas such as block groups, margins of error can be very high. I’ll graph poverty rates with error bars to illustrate this.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(tidyr)
+
+<span class="co"># select rate columns and their margins of error</span>
+<span class="co"># make long format for ggplot</span>
+pov_df &lt;-<span class="st"> </span>profile_df %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">18</span>, <span class="dv">19</span>) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="st">`</span><span class="dt">Poverty rate_upper</span><span class="st">`</span> =<span class="st"> `</span><span class="dt">Poverty rate</span><span class="st">`</span> +<span class="st"> `</span><span class="dt">MOE poverty rate</span><span class="st">`</span>,
+         <span class="st">`</span><span class="dt">Poverty rate_lower</span><span class="st">`</span> =<span class="st"> `</span><span class="dt">Poverty rate</span><span class="st">`</span> -<span class="st"> `</span><span class="dt">MOE poverty rate</span><span class="st">`</span>,
+         <span class="st">`</span><span class="dt">Child poverty rate_upper</span><span class="st">`</span> =<span class="st"> `</span><span class="dt">Child poverty rate</span><span class="st">`</span> +<span class="st"> `</span><span class="dt">MOE child poverty rate</span><span class="st">`</span>,
+         <span class="st">`</span><span class="dt">Child poverty rate_lower</span><span class="st">`</span> =<span class="st"> `</span><span class="dt">Child poverty rate</span><span class="st">`</span> -<span class="st"> `</span><span class="dt">MOE child poverty rate</span><span class="st">`</span>) %&gt;%
+<span class="st">  </span><span class="kw">select</span>(-<span class="st">`</span><span class="dt">MOE poverty rate</span><span class="st">`</span>, -<span class="st">`</span><span class="dt">MOE child poverty rate</span><span class="st">`</span>)
+<span class="co"># splitting into rates and bounds in order to gather, then will stick back together</span>
+<span class="co"># use gather to make long format</span>
+rates &lt;-<span class="st"> </span>pov_df %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(Geography, <span class="st">`</span><span class="dt">Poverty rate</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Child poverty rate</span><span class="st">`</span>) %&gt;%
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Measure, <span class="dt">value =</span> Rate, -Geography)
+<span class="co"># use gather to make long format, separate to get type of measure &amp; type of bound, then spread to make individual columns for upper &amp; lower bounds</span>
+bounds &lt;-<span class="st"> </span>pov_df %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(Geography, <span class="dv">4</span>:<span class="dv">7</span>) %&gt;%
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Measure, <span class="dt">value =</span> Bound, -Geography) %&gt;%
+<span class="st">  </span><span class="kw">separate</span>(Measure, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;Measure&quot;</span>, <span class="st">&quot;Bound_type&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> Bound_type, <span class="dt">value =</span> Bound)
+
+<span class="co"># join rates &amp; bounds</span>
+pov_long &lt;-<span class="st"> </span><span class="kw">inner_join</span>(rates, bounds, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;Geography&quot;</span>, <span class="st">&quot;Measure&quot;</span>))
+pov_long</code></pre></div>
+<pre><code>## # A tibble: 8 × 5
+##           Geography            Measure  Rate lower upper
+##               &lt;chr&gt;              &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1            Dwight       Poverty rate 0.377 0.246 0.508
+## 2              Hill       Poverty rate 0.447 0.373 0.521
+## 3         New Haven       Poverty rate 0.266 0.247 0.285
+## 4 Greater New Haven       Poverty rate 0.128 0.121 0.135
+## 5            Dwight Child poverty rate 0.446 0.150 0.742
+## 6              Hill Child poverty rate 0.618 0.502 0.734
+## 7         New Haven Child poverty rate 0.377 0.340 0.414
+## 8 Greater New Haven Child poverty rate 0.180 0.167 0.193</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(rates, bounds)
+
+<span class="kw">ggplot</span>(pov_long, <span class="kw">aes</span>(<span class="dt">x =</span> Geography, <span class="dt">y =</span> Rate, <span class="dt">fill =</span> Measure)) +
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) +
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper), <span class="dt">width =</span> <span class="fl">0.25</span>) +
+<span class="st">  </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>Measure, <span class="dt">ncol =</span> <span class="dv">1</span>) +
+<span class="st">  </span><span class="kw">guides</span>(<span class="dt">fill =</span> F) +
+<span class="st">  </span><span class="kw">coord_flip</span>()</code></pre></div>
+<p><img src="data:image/png;base64,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M3UjLW3873//a7Zs2SL1o042T56lrNKlS4dx5HmVvCOgBiDv2OmTisAhCCxfvtw0atQorPxJgGJ7/vnnTeHChc2aNWsMbqBbb71VFO1XX31lBg4caKpVq2YmTJggaTt06BDOl7S33XabPLt37155JnzTcTB+/HizceNGs3v3bnP00UebIkWKmIceekgU5TPPPGPef/99c9JJJ8n9QYMGmVNPPdVcd9115umnnxYjBDFgt27d5BmULGnKly9vMGg9evQwGKfPP//cjBo1ShQ7RqRWrVqG5/7xj3+Yq666yjz55JOGeiC4ve666y4zceJERy2NjBgqVKgg+T744IOi6KdMmSJlMQKqX7++6dKli/nnP/8p5bz66qvmmmuuMWPHjjWzZ88W5Y97bciQIaZMmTIReetJ7hFQA5B7zPQJRSAuArhnzjvvvEPuo/yt0JMdMWKEKF4U5Jw5c8QA2PvOT5R3vXr1RDnzXLt27Zy3I45xNz333HPm8MMPN3fccYd58803TbFixcw777xjxo0bZxhpoFBfe+0107dvX9O4cWOzYMEC0759e7N69WoZDaD0+/fvb+6++25z/vnni7HCADVr1kzK2rx5s3nxxRfFwDCqmDlzpnn44YfFEDBqoP1nn322mTdvnrnooosiev+2srQHBY5Ql2HDhslogNFE586dTZ8+fUybNm3MsmXLRPljkObPn28mT54sBvCtt96StuFmU8kfAjoHkD/89GlFIAIBetnJYibhhrEBuk4//XTplUdk4jihV3zBBRfIFdw1lSpVctyNPKxTp470+HEj1a5dW3rsjDi4bt1MjE6YhMZ9g1JHUSNMOl966aXiYsEYcD506FAzZswYmYtggho55ZRTxE2DkXEKZfI8ippRAflecsklziTh4ypVqohh4BkM0apVq2T0gFHgWetisg8sXrxY3Fa41qgThoE2kFYlfwjoCCB/+OnTikAEAmeeeaZhEjhacJPg5sF/jY/dSjyfv72PT56etRVcL27kwIED4gpiBIBryAp50XNHgZ911lnyiZFZsmSJufHGG2VugDJatGgR9rO3atVKXEZff/21+PptXtGfKPzevXuLG4e5AwxdLGG+AKGOuJfq1q0r7qS2bdvKaCSWYsdlRT1UvEUg0ox7m7fmpggUOASaNm0qbhP82ihaJlvpFX/00UeiGHMLSNWqVcWgMDG6Z88e6S3Hy+ODDz4QpYpiRaHzbIMGDaRs3CgIPftzzjlHFD/njAJYoUTa448/XuYJzj33XLNz505TsWJFmUzGRUM7osUaI9qJlCxZUuY+cEMxGkgmzFcwWurevbuMchgJIJRlJ6I5pw3MRTD6oE5Mnk+dOjWme4n0Ku4RcNedcJ+fplQECjQCxF9ncpPJUvzbCG6ee+65RyZycwvODTfcIMtImRilZ8wII56gNFlthFx44YXmL3/5ixyj5JlIZWKYFTUPPPCAXOcfaZ599lmZELYXr732WpkEfvnll2VFDquYeBbF6xRWHTHfcfXVV8scw5///GcxKLhqGjZs6Ewa85jREPW86aabpF5ly5YVJU85YEY+9957r0ySM8lMvewKIFxHKvlH4LDQl0odafnHsUDkYHtoBaKxHjSSniy9cbuMMT9ZsmQT4xLte7d5PvXUUwYFjLJmtGB9/vY+vXSWcDono+29eJ+MGpjTSCa00ZaH7/+TTz4x/fr1S/ZY+L5dwup0jXGTdjAfYK+D508//SQjlfDDepAQAVagMbEfT3QEEA8Zva4I5BMBesheKH+q4VZxW2UZXXXmEvjLjbhR/uSH8kc5Y4RwQ7H8NDdi5wSin8HYOdsDnripVLxDQA2Ad1hqTopA2hDA5+5Uln5XBOXM+n7qkajH6Xe9tLzECKgLKDE+eteBgLqAHGDooSIQAASSuYB0FVAAXqJWURFQBBSBVCCgBiAVqGqeioAioAgEAAGdAwjAS8qUKrqJvcLGJmLRsOGIVRx+CROcdj26X2Xic7crVfwqk4lRMGbS1S9hvT8+fr/DM/v9Tu13l3b6uTgyle1MNi+kBsCvX1EWlONGAaAoWI7I0j7nDtZUN5+VJESO9POHi38VTCjXL7HLLd28C6/qhBKh3GQhLrwqz+bDsleWv/olKGLK5H1Gh6NIZR38bqezLeoCcqKhx4qAIqAIFCAE1AAUoJetTVUEFAFFwImAuoCcaOixZwgcfXtvc7RnuSXPCI/4HwGXk6f3IsWB/2WSjq1JqShz35BHvIBF8wgQAjoCCNDL0qoqAoqAIuAlAmoAvERT81IEFAFFIEAIqAEI0MvSqioCioAi4CUCagC8RFPzUgQUAUUgQAioAUjysqCjg+fUKRB1w6XqpbCJacaMGYesP/7000+F2s/LsjQvRUARUARAQA1Aku/BpEmTzJ133im8qDbpjh07zNixY+2pJ59s7IF5KXrzFPHVIfVWUQTygsC/QvHzfwrF1PdSiMkPY5hK8BFQA+DiHbK7FXaieMLuU1iMnD8KfiTO3ZqQa9jQCPT287rDkRAA27ZtM/Cz2t2K7NC0x9QRI+LMn7I3bdoUkeaHH36Q5lBnZ73jtVGvBw+BA6HvylnT3jBTN23xtPLPP/+88Ph6mqlmlhYEdB+AC9i7detmnn76aYM7CAo7p+zbt89AT4cCRulCZTd48GAzffp0UdT9+/cXBQulHdyr559/vnnllVdkRAEhdm4EJQ5FHoTb8MNiYKDzGzlypJTbrl07yW7MmDGydR86wdGjR5tZs2YJld6uXbvM8OHDhbe1S4hisHLlylI3DECTJk1Mnz59IqrjHI0kIy+PeFBPMgqB30IxmX52ETvI2WFxNoBQEMQgsvf5rvsZcsNZFz32FgE1AC7wJOYLinzo0KGmSpUqEU8wFwBPK/fpnQ8YMMCsXr1aDIXlLV2+fLko7RUrVogBWLp0qfCgRmT0v5PLL7884jJK2Cr2lStXynGrVq0kTdeuXQ15tmjRQowA6Rhl4DaCk5a5CkjAp02bJmQhM2fONG+88Ybp3bu3PF+uXDnhr/3Xv/5l2rdvb3r16hVBOdioUSOzd+9eSVunTh0zYcKEiLrpSTAQuPXDjwx/SWXSy0mT2AQYBUjaUy1+lBHdhmLFikVfSvl5qtqJJyKRqAFIhI7jXv369U2tWrXEFQTvqpWFCxfK4aBBg+QTpbto0SJRpgSX2rp1q1m2bJnp1KmTmTNnjvT8UbgVK1a0WUR8vvTSSxKQyl6kd28F4wDlHj389evXywiDXlm1atUkgBUjhN27d0tvv1SpUjKpTCRH5hYQuFvXrl0rdeO8Xr16fMgPmR4d9wlMZeWuu+6Sa5yXKFHC4EpKJvQUMZgqmYNA+wrlTb0SyZXaf9t1jFlpvse4Qfl+IPPnzzdvv/22q+9DzAxdXoRO089Ae7QRyklG9X5GW01lO5ON3NUAuPwykgwXSefOnaU373ysdu3apmrVquFLlrcUd9GHH35ovvjiC3Hd0IPGYNCbjvdiiLpoIz6SIV9KK7iQNm7caFq2bCm9/scee0xukRejAHr+uHM4RlDqpUuXNtGjCrkZ+mfryXms+rRu3domlU8MVzKhvmoAkqHk7/36JYqba888PWmh+9q0iZmG7wnRVr/99lu5jyuRzgwRX1Mp/A5SXYaz/hg62oqhc86pOdOk4jiV7SQ0eyLRSeBE6ETd48uBq2fKlCnhO02bNpVe9dlnn20qVapkJk+eHF62iQHA/YKrhZ44RmLcuHGmQYMG4edzc8CSUNw8zZo1E4JvDIvtqXAN44JLqHHjxpItLhyWsDK8pG6MRqh7LGWfm3po2mAg8KdQx+DB86uZmkVP9rTCdevWFVenp5lqZmlBQEcAuYQdV9DFF18sSp9HMQAs02SS96STThJC7IsuukhyRekyhK1Ro4ac16xZU1w49lwu5uJfhw4dxLc/depUUeJMKLMiCMFFwx8TxPTWEOrTtm1b8e9D5kLvnDkKlYKBwBEhd9xt58V2NeYHgerVqxv+VIKPgJLCe/QOUfT08pMNufJbHJO8rDbKjZuF4SxDaafLJy/1cOsCwgjtvza2Pzkv5eoz/iAQLxpotAvIn9oYIRZiTs0vwQVUtGhRg4vLTxcQBEqpaif6qEiRInEh1BFAXGhyd4OJHD8kL5OsGKb8Kn8/2qZlKAKKgL8I6ByAv3hraYqAIqAIZAwCagAy5lVoRRQBRUAR8BcBNQD+4q2lKQKKgCKQMQioAciYV6EVUQQUAUXAXwR0EthfvAtMaT8/OuKQyKapbDxLXglw52eMGkIGsBObYHx+CZuG2Mfh5wYpv9qm5fiPgI4A/MdcS1QEFAFFICMQ0BFARryG7KvE0bf3Nok3oXvb5oOh7Ap7m2XS3H6PjBMKqZE0pfcJ/C6ToA9+lwmLgd9l7g+V+fs2ysh3Fm+PRGSq4J3pCCB470xrrAgoAoqAJwioAfAERs1EEVAEFIHgIaAGIHjvTGusCCgCioAnCKgB8ARGzUQRUAQUgeAhoAYgeO9Ma6wIKAKKgCcIqAHwBMbMyWTLli0Scjq6RrNnz5Z18lyHJpLopfALbNiwQZJyX9eWR6Om54pAdiOgBiDL3i9KHRKaaIEjGLYwBOYwDACfH330O1cs9/3c0BRdPz1XBKIRuOadxWbgylXRlwvkOR07iJ7gBfdSdB+Al2gGJK+7777bFC7s96r5gICj1cwYBDaGuHmPC4UyVzGy4/zLL780yUjec4uVoptbxLIg/XXXXWdGjBiRtCU333xz2G0Eu1nfvn2TPqN0k0kh0gQuETgY4rSes327aTZ7rssnUpfssI1XpyxzfjPJQphYxQ+vRyKCl+hK/vrrr9GXIs7VAETAkR0nuHUuueSSiMbkxb/PFw2WJAQGMtjIkokagGQI6f3cIHDMEUea4v+jOM3Nc16nPSzEcpcqgeQp2W/LumcxFMnSOuuZzLCoAXCilSXHcAU//PDDEa2Bszi38tBDD0U84pYSkoBlKopAfhE4ItQzbliyhHm6fp38ZpXv51MZCsINJSTuH+bsoIP9/vvvXbcnGUWtGgDXUAYnIeTv0UpYe+bBeX9a098RqFn0ZFM+5PJQMaZQoULmwgsvNES99VLUAHiJpualCCgCniHweJ3anuUV9IxKly5tXnnlFc+boctAPYdUM1QEFAFFIBgIHBaaJMgJRlW1lulGwO0cQPHQhNn+azumu7paviLgGQLpngPIa0OYA0i0akhHAHlFVp9TBBQBRSDgCKgBCPgL1OorAoqAIpBXBNQA5BU5fU4RUAQUgYAjoAYg4C9Qq68IKAKKQF4R0GWgeUVOn0uIwM+PjjC//PJLwjRe3mR99A8//JB0S72XZRYrVkxitNhdml7mHS8v9newpyMvO7vj5ZnsOuEHjg3txv3222+TJfX0vpsNUl4WyK73okWLml27dpnffoOROPtFRwDZ/461hYqAIqAIxERARwAxYdGL+UXg6Nt7m6Pzm0kunj8YSpvK+KapXAaYi2ZqUkXAUwR0BOApnJqZIqAIKALBQUANQHDeldZUEVAEFAFPEVAD4CmcmpkioAgoAsFBQA1AcN6V1lQRUAQUAU8RUAPgKZyamSKgCCgCwUEgrQbg66+/NjNnzjQTJ040S5YsyRXTjVuIf/75Z7dJY6ZbvHixWbduXcS97777zixYsCDiWn5PoG6bMWPGIeuPIXn//PPP85u9Pq8IKAKKwCEIpM0AjBo1ygwYMMBsD3F+EpD0hRdeMLfeequnm4eeeOIJ88EHHxzS6NxcmDRpkrnzzjvNvhBBtZUdO3aYsWPH2lNPPjFUw4YNO6T9sAC98847npShmbhD4J1/fWPu+/iTuIkfffRRYWeKm0BvKAIBQSAtBuCNN94wq1atMuPHjzfdu3c311xzjXnqqafEEMyZM0egY1cnu/FQtlZQkhs3bjQ//vijvRT+3Lt3r1m/fr2x5Mmk3bx5s6S1O1IxNBicnTt3hp/jIFZZzgQwbD3++OPOSxHHsfKlHs7RBzRulsuT3j7UbnmRgwcPmm3bthlGT3a3IjtR7TF50l5n/pS9adOmiDS0GQGLaDzkRgH+t2LPXjP6i8hRnxMOOgUffvih85IeKwKBRCAtG8Fwn1x99dXGyVcJMfLAgQPNcccdJ0BiFE4//XTzxRdfmCFDhhiU5gMPPGAqVKggLpmePXuali1bilK79957RYmdeOKJ4i7hHCWIQUDRlSxZ0px55pmmb9++kh7lSN6DBw+WbfXRZVWpUiXiZXbr1s08/fTTBncQtGxOYWQQK9/p06eLou7fv7/UDU5eRiTw9cLsw3M9evRwZpX0GCVO24i3v2fPHjEwzz77rBk5cqS0p127dpLHmDFjhBLyhhtuMKNHjzazZs0yMAqxxX348OHmtNNOM126dDGVK1cOG4AmTZqYPn36RNTh+eefD4ccOPXUUw1pkkm2UE/+9t8cM/TT1X80N/T+rWDcCRvAd5bPwoVTuQXNlvr755FH/v6TpVPilxx11FHyO/GznbSNNvpZpsUU+kXbWfMD41S2Mxndi+8GgAqh1G+77bYwtvi5bc+dmC7nnHOO3EPZorBQKriH/v73v5uaNWsaevsYgBYtWpgtW7aI0Rg3bpw8M3nyZPP222+bBx980Lz11ltiJFC6KGSMAAqZXjTup9WrV4sS5EFnWZKR498JJ5wgzw0dOtREGweMWax8yQ/DgCxfvlyU9ooVK8QALF261Nx0002OEv44vPzyy/84CR1hyKxiX7lypRy3atVK0nTt2tWQJzhgBEjHFxe3ES425irmzp1rpk2bZvgRM9/C6Kt3797yfLly5QQniF7at29vevXqJUrNVoCeLlgjtWvXNrZcez+bPw+GvqdPrHHMvWzcHG7ugQMHBE++lxgAq5TDCVJ4YA1ssh+2l1WwZdrOmZd5J8qLcv0uk/oQ98hPSWU7+a4mEt8NgG2sk9keJYUbgh4qAaDwsSLVqlUT5Y8iw0jMnj1blDv36EGvWbPGnHfeeaZjx47mpZdeMl999ZUodRRbtCxcuFAuDRo0SD7Jc9GiRWEDYMuKfs6e169f39SqVUtcQVdeeaW9bOLlizJFOWzdutUsW7bMdOrUyeDeot4o3IoVK4bzcB7QDnogVlDsVjAOzGnQw2d0gysINxN1xy3GCGH37t3S2y9VqpRMKqOcmFtA+DKsXbtWFD3n9erV48Occsop4n7jvrNs3otTcsMI5nwuiMdHH3G42d6+TbjqzlAQNWrUELzpSIC/BoMLw+TpQbqCwTG6drpUPW1UjMxS2U68LM7fdHTxvhsAKoDr4eOPPzbVq1eX+tieMj13/qw4LTGK7LLLLgv3tlCGuCXIh94+vV8Uc9WqVc37779vs4j4pBfLfStEObTiLMtei/7ERdK5c2fpzTvvxcuXUQC+YkY8uG4mTJggBqNOnTpi2Jx52GOiPfJnxQ5LOceFxBwIri96/Y899pgkw6hyTs8fQ8oxQi8R10/0qEJuhv45208eKoqAIlCwEEjLJDA+d1wRLHu0QxQmNelx0muOFixkpUqVzDfffCOfJUqUEP89PTDcOLiFMAC4jnCvWOuN28NOxDZt2lR6v2effbbkgasot8srUZi4kKZMmRKuYqJ8MQC4XxiRYMAwPriqGjRoEH4+NweMgmhns2bNBCcMCxggXGM0gkuocePGcq1Ro0YyX0IPH/wYjVB3VfYCT9x/t59X0XzT/uq493Hp3X333XHv6w1FICgIpGUEcMYZZ0jvFT81k5QIPV2UWJfQ5GQsuf766839999vUNz4udu2bWtOPvlkc+mll8qP8ZZbbpGJYkYVdtkkCveRRx4RI4Ci5jqTscwzlC9f3lx00UWxikp4DVfQxRdfLMaEhInyRenimsFlgGCocOHYc7mYi38dOnQQ3/7UqVNFiTO3gRsIwSjyxwSxHc3QTnDCv1+mTBnBmLkPleQIJDKSie4lz1lTKAKZg8BhITdBTjqrQw8WHyq9fDeC7z5WWlb7MFkb/eNkBMCoghUbCAqZ3rhzBZKbcpOlSVW+0eVi/FjFRFvdCiMiCEScLh+3zzrT5WYOYP+1HZ2PBv7YOQdgG6OEMBaJ1Hym0jceq8boiXQQwqSynei5IkWKxGquXEvLCMBZG3r+sRS6M43zOF5aloDGkmhFn6pVBanKN7pNGLLcKH+ex+DlV/lH10PPFQFFIPgIpGUOIPiwaQsUAUVAEQg+AmoAgv8OtQWKgCKgCOQJATUAeYJNH1IEFAFFIPgIpH0OIPgQagtiIfDzoyMOCWwXK51X11jxxEKANK9p8Ko5mo8i4AsCOgLwBWYtRBFQBBSBzENARwCZ906yokZH397bHO1jS9gO519Itt8bZqOs/LGf3L8G+13mf0JNy0uZsZbP+oeSlpQMAR0BJENI7ysCioAikKUIqAHI0herzVIEFAFFIBkCrg2AnxEPk1Va7ysCioAioAjkHwHXBuCss84SEhfIRWwAsvwXrzkoAoqAIqAIpAsB1waAAGSEICCwGCGGiYpJPH4VRUARUAQUgWAi4NoAEMIYInRCMhOHnlDKRLWEJIWonpZjNpgwpK/WBKsjLLb9mz9/vhC75KZGBMizEVATPQchDUHrYokNmx3rnl5TBBSB7ETAtQGwzSfUMDHpoWeEkvCTTz4xd9xxh5Cz9OvXT0Iy27T6mRwBInvC2LVu3Tr5g2IS4hnLipY8ByPUj++++27SpPAaO5nY7ANwCBA2uyDK1v0/mrnbdxTEpmubA4oAJFNffvmlJ7XPlQGAhpCY/HDgQie4efNmoWK0PVBIXrivknsE4EjGrQZlJUTvsJpBWfnrr78KjaTNEe5kZ28dhQ7JO5zJToH8hbSEgXamJw1hnaGORAgvzXtkZBBvdCAJs/TfrBCfwhXzF2Vp67RZ2YgAHW7LgZ7f9rneCAbxCYxT5557rrnxxhuFGhGmKSu4g/76178KQ5e9pp95Q6BkyZIGNi969bCcMdLCRUQoaAwFBpjRFoocxc9ojB78+PHjhcS9Z8+eEv4ZjmVIc6CQtLSQjDbgB4A/uHnz5gaSGfLGhffyyy8biHeswB9s2dUIdx0v5LZNz6eTwtJ5PdOPl//PIGZ6PYNWv18++yzPVYbLlk6MX8J3l7DprHikY+SX5LaddOjQBbHYE6PrHM2PEn3ftQGAferhhx82F1xwQXQe4fPevXsnJCAOJ9SDpAhAXcnEO8YAkgqGfHAg7927V3iQyWDJkiWH0EtCIt+wYUPTo0cP6dFfccUVEWVBUwkrGr1+DDlMakzsw1TmVP48dMMNN0h5HMNjDKdxtkqTWXOytWnpbZfi6jn+KH5c8eiFZJLMgLo2ANZHvGPHjkMmfFkdhHKCdlDFGwSw8pbaEaW9bNkyU7ZsWVH4KGt69xgA+JWdwsqsNm3ayCV67RDWOwVDjsBTzHLeRG6f5557LmIEYN1Gzvyij3NL8BP9fLrOF7a4JF1FZ3W5v/Tpm+f25bZnnOeC/vdgUEYAdNxw7br9PYJjPHFtAP75z3+ajh07HqL8yRiF88orr8QrQ6/nAYHPQkNnuJMRVmDRs//2229N3bp1ZV5g8eLF4sapXLlyBLk9Lh/npj0mmZ3iZEhLNjysWLGi81FxOUVciHHi59A5RvF5vlTTRW8qz5kX4Af3hb6feZVUUiXGqlNQKCH5DfM7Y34wmVgq3HjpXBuA7t27CwF7r169ZB+AM0O/6BCdZWbrMcr7vffek2WddqKHTXg7d+6UXv/NN98svXKW4uKOi37BuH/YrFelShUhjF+1apXMJyTC66ijjjpkojhR+my61yK0p6VCyO+roggEBYGhQ4fmikY3UbtcGQCU0vbt22VpIq4eFe8RYJKdWPYYUyZ5cbmx4Q6hp46y37Bhg8yx4MZhLgBlHy2tW7eWEUHnzp3F/cMkMpzAiYSRBuUNGDDADBkyJFHSrLtXpvBxhj8VRSAoCCSah81tGw4LKZ0cNw+VL1/eTJ48WVwQbtJrmvQgwFwBy0KZPEYYuV133XUyiZuoRnZI6XQRRadn1VEywY9avHhxs//ajsmS6v0CgEB+wkGrCyj/XxB+z0WKFImbUcKuIcrEThLi/8fXf88995jTTz89YgkSP/hKlSrFLURv+IcAk8f05C+55BLDvg0UcvXq1ZNWAFdSIuWfNANNoAgoAoFDIKEBYFlgdLwffNDRopPA0Yik75wJY1b4rFy5UowAyl8Ve/reh5asCGQyAgkNACEC3HiI6GWqZA4CLMfVJbmZ8z60JopApiKQ0ABE9xwJO0CsGlaWsNywZs2aEhIiUxun9VIEFAFFQBGIj0BCA+B8jKBvhHpgBykrS1iTzkoUQgmwXDHaWDif1WNFQBFQBBSBzEPAtQHA9098GjYgsRSUVSO4iIgM+vjjj5s777wz81qnNUobAj8/OsL88ssvvpV/0kknySZFNy5LrypVrFgx2T/h3HjnVd7x8jnmmGNkWTA7Qf0S4uOwK51On0p2IeAqGigrgT7++GMJW2z3AbBqBC4AFP/s2bOzCxVtjSKgCCgCBQABVyMAGwmSHn+zZs0iYCFIWYkSJSKu6Ul2IuBmsp+OAT1/Nq+5Se8VUsQ1it4V7VXe8fJhKz4jYT/baeviZ5l2j4ifZdJO3qmfZfKd5bvL98jPclPZzmTtcL0RbMSIEYYtyJ06dRIjwKjg7bfflhDEw4cPl92rvDRGCIQuUFEEFAFFQBHIbARcGwDrY03WHMILP/nkk8mS6X1FQBFQBBSBNCPg2gCww9TNBBtxZ5LFnklzm7V4RUARUAQUgRACrg0AaLHyYM+ePeEY8fiuYJIiLjWhB1QUAUVAEVAEgoOAq0lgmvPiiy+GWaaimwdBgRqAaFT0XBFQBBSBzEbA9QgA/t9LL71UuIDZEDZ37lxhqYImEvISdgarKAKKgCKgCAQHAVcGADcPk8Bbt26VGPVEA4V0BN5a4sgTJpiVQCqKgCKgCCgCwUHAlQsITkno0tiFiBAK4v333xcDADnBXXfdFZwWa03zjMAXX3yR52f1QUVAEfAfgcKFC4eJpWKV7soAoPyrVq1q7rvvPmGMqlatmpk6daq4gxgJQBajkv0IsBJMRRFQBIKDQLIYba4MAM196qmnzGWXXWYaN25smPStUaOGwbqwEmjGjBnBQURrqggoAoqAIiAIuDYAKPyvv/5atkqj+CEcmTNnjrn44otN2bJlFU5FQBFQBBSBgCHgKhgcbTrvvPMk6BvKH4F3tmvXrqr8BQ39pwgoAopA8BBwZQDYALZhwwYJfBW8JmqNFQFFQBFQBGIh4MoFRCzwIUOGmDvuuMNs375dAr9xzUrRokXNueeea0/1UxFQBBQBRSAACLjaB0A7EgWDU1L4ALxpD6oIFahKahBghRWbK62w8o7Nl5UrV5bQ2vZ6qj4pP9mKkbyWncq881qngvLcCSeckHCVpqsRAGDR848XDE6DvxWUr5O2M1UIEF4dZr2WLVuKwv/tt9/M5MmTxQgMHjw4pVwHLOjA+DDC91pGjRplqlSpYho0aOB11pqfBwi4NgBbtmyRJZ/RZUKewMRwyZIlU9aDiC5TzxWBbEWgd+/eYTIS5t6uvPJKmX8788wzpcnfffedgYimePHicn7gwAHpmDldst9//72M2EnALn7OS5cuHZEvRCEEccR9y297//79BiME+QsbPhmBIJRFD94u/uAaxolrfCInnniifFI3/tAFbB4lDXmfccYZsnrwqKOOkroSOYBOo22DPKz/0oKAawNQr149+TLFqyVfQDaKKTdwPIT0uiKQOwQYcdPBQpmirIcNGya/QZQ6my8HDhxoPvnkEzNp0iQzcuRIyZzd2hA3jRs3zowdO1ZW7qH8d+3aJfN4ZcqUMc8995ws6V6/fr2pX7++4RnyfPXVV0WBo9C7dOki+b3yyitiHLp37x6u/Oeff27o2fMMinz8+PHmwQcfFM5gXA7r1q0zAwYMEOPB4hE4k2ENJIQM19k7hMGpUKGCeeCBB3xxcYUrrwcRCLhaBcQTvKiKFSuaZ555xmzevFnI4e+55x4JAgdR/OjRo+UL+vrrr0cUoCeKgCLgHoGZM2ca/iZOnGj69+8v4VZg2eN3xye/MyLzMjrAdQMvN2TtuGgRXDkEbaTXP3/+fHEj4VqCye/NN98MVwQljMK/7bbbDHN4uGmuueYaeZbnrNj87Ln9RAdgdCZMmCDGBNpY6obx6dChg9SjYcOGEjamY8eOhugB77zzjowGSMdzjCDWrl1rs9TPNCDgagTAsJDe/WuvvWaaNm0q1WTzF72HNWvWyIYwDMRXX31l5s2bZ4gWqqIIKAK5R2DTpk3S68cN06JFC3PRRRdJJvS6+/XrJ8e4b/CpL1iwwNSsWVPSoLRRvO+++64oYjpl9M5R/ggGg57+TTfdJOd2chkeXKcQ5wtXDb9rO/ooV66cM4kcM0GN+wihJ9+2bVsJD8OoAqUea3MoBgDBSCAYKepbqVIlOdd//iPgygDgZ+QLxOavaClVqpREA+U69zVgWDRCeq4IuEegV69eYV+98ymUrfW5cx3ycnrxSLNmzcy9994ry7Ph47ah2RkxtGrVStJE/3POGUTfYwSBQcEAxOP5cD6PG4qJakYSdP4wLh988EF0tnKOweK+leOPP94e6mcaEHDlAsIHyRwAPRD8e1Y+/vhj8/zzz5sLL7xQ/IEvv/yy+ctf/mJv66cioAh4hECjRo1EKaP06Yy999574pIle/z6+N5feOEFceFwjRHCl19+KauIcN3iIiKAY3SPn7T0+DEoVgjvggJftmyZadKkib0c95Me//nnny8GAAPEc9ZYkTeTwUjjxo2lg0ga6sT8glOfxC1Ab6QMAVcGgNLHjBkjLh6GiAwJ6e1jzdu3by9RQQkJzcts3bp1yiqrGSsCBRUBXK/4+jt37iwTtChRgjNaYRSwc+dOU7duXbnERO5VV11lrr32WnPzzTdLwEaOYwmTs59++qmMIrj/5z//Wdw6XLcrfGI9Z6/hpmJO4NZbbzWMYJh03rFjh9ymt//EE08IfwhGDOPFnAABJVlp5MbA2HL003sEXG8Eo+iffvrJLFmyRCaf8FHS869evbrUCt8ffkEmg1SyEwHdCJb+98rqGTZs2WWayWrEiIHfbTJXC/N89NrpsSO4lDAwtWvXTlZE+D6rghiJRI8yGF0wH4FLCWG5KfW3ZYUz0APPEfBsIxg140UyrGQ4yVpfeiRc40Wy1ldFEVAEUouAcz2+m5KYME6m/MkH5czvmDk8wrvv2bNHVhi5KcOmiTdaiFb02km0iKX/09UkMNVkiMiEEMNMloyxrpgNHQw9Wfpp2cLS3yStgSKgCOQVASab8c/joonuyec1T30ucxFwPQfQrVs38S/CC4wrgFEAk8D0GPDxqSgCikDwEcAAsHKIeQCV7EfAlQHAh7h8+XIzaNCgML8kvQP8/7fffrusR85+qLSFioAioAhkFwKuDAD+QbalYwiihQkdu+Qr+p6eKwKKgCKgCGQuAq4MAP79xo0bS5yfjz76SIwBm8PeeustM2LECKGFzNwmas0UAUVAEVAEYiHgehkoYR7Y5ccW8WLFikkwJ9b0slSMmCJul6XFqoReCwYCTPwnE0aLrFRhZGh3qiZ7xov77Ezl++insJqFNtIZ8ktYTon7lSidfolddsoSVD/F73fKiineKe1kWaxfwkbbWN4VL8pnBVa81Vnk73oVEOFoV6xYIbF+mPhlVECAJ+IBqRQMBNy4+vgRoTD4EblJ7xVylIsyjsdZ4VU5znz4cTnDIjvvpeoYA4D4iS2KmLb6WSZtpK1+lolh5btL9FI/y+W7m6ryyDuRuHIB2Qywivv27ZPeHaMBwPLTUtp66KcioAgoAopA/hFwPQIgGmHz5s3NN998I0of1w+7Bdn9R5RQNoapKAKKgCKgCAQHAdcG4IYbbpB9AMQlt+EfCAQHY9GUKVMkrnhwmq01TTUClZZ+lOoisi7/lTWqZl2btEGZjYArFxATFET4g/WH2BJWYPnp06ePBHqy1/RTEVAEFAFFIBgIuDIANpATKzuixRJHRF/Xc0VAEVAEFIHMRsCVAWAFAHGAoI9jHwDCqGDy5Mnm6aeflnhAmd1MrZ0ioAgoAopANAKu5wCeffZZ2QdAeFiWSxHHm7XI7dq1M717947OV88VAUVAEVAEMhwB1wYA6kdYgmAiYh8AowL2AfCXzQK3Khvfzj777HAzv/vuO+FEsPzI4Rv5OMCYsrMaHli71pvsiMLKJrtzzz03H7nro4qAIqAIHIqAawPAo/T8GzZsKH+HZpWdVyZNmiRhrydOnBiOqw7b0dixY42XBoANRcOGDROCb6cBmDdvnmGnoBqA7Ph+5YT4M3796ktzZNly5vDQjulEwuYggjCyCdPy/CZKr/cUgdwi4GoOAOIXuw0cHs+BAweG/5gEznZhN93jjz8et5nsPiU8NlwJVpgjsVyoXPv+++/Dm+bo7Vs8bXq3n+x23bZtm/n666/Duwejdy5C0uPMn7I3bdoUTk9Z7N9AqLOz3nJR/6UMgYO7d5nvBvQ3v375B7d2vMJ4h1dccYVZtGhRvCR6XRHIFwJJRwD33HOPefTRR82LL74oa/6Z+OULWaRIEVEis2bNEppIRgfZKnAhMNmNOwgaTKewM7pv376iXPnBwqM6ePBgM336dFHU/fv3FwULPyu8CZBnY0R5rkePHs6skh6jxNl8V7x4cWFswsAwNzNy5Egpl/kYBP5mQnWwd2P06NGyTBeeVmL5DB8+XPicu3TpYuBrtQaAOR2W9DqF8mw8HxsOwHk/1nGyreexnimI1w7u+tb89vWWiKZvOClyRMB3BAFTOyok1hK/NXsekUGKTigT8bNMyvO7nfa7az+pgx+SynYm08sJDQDKHrcESub//u//BAsy7Nq1q3nkkUdkLgAlMm3aNNOmTRs/sEpLGex9QJEPHTpU2NCclViwYIEM0bmPshwwYIBZvXq1GAoMA8IwHqVNLCUMwNKlS81NN93kzCZ8fPnll4ePOaA3bxX7ypUr5RjCDoT3QJ7MG2AESEdoDtxGo0aNMsxVzJ07V94PczYzZ840b7zxRnjSvly5crK3A2a39u3bC6G3/bGTf4cOHczevXs5NHXq1DETJkyQY/2XfwT2PTnikEwaHHLl9wt8/5iHSrekow7pKJPOrd+SqnYmCzKX0ADQk+zXr5+htxhLzjnnHAkPMX/+/Kw2ALSdoHe1atUSVxC7n60sXLhQDiHLQVC6jJB69eolk7cwqLGJrlOnTmbOnDnS80fhQrsXS1566SXx+dt7KHYrGAcm4nkv69evlxEGowAm4tmjQY999+7dQtrDpD3crvTaMOIIUSvXrl0rdeO8Xr16fJhTTjklHOKb+QYrTz75ZDjqJBEF4YlNJhgQZZNKhpIxhbtcb/505lkRCcdV/GOhATcYUXbu3Fm+MxZ7DDmdMKd7MSKTFJzwnaBcXIl+ClzGdhTkR7n8Vvie00478vWj3FS2k9GM8zcd3Z6EBoAVKH/7298insG1wJfBSs2aNc3s2bPtaVZ/4iLhB0lv3iksja1a9Y9t/JaEG3fRhx9+KCMlXDf0oDEY9KbjDc3Alz8rzuEoLqSNGzeali1bSq//sccek2TkxSiAnj8uHY4R5iZw/USPKuRm6J+tJ+ex6lOjRg2bVD4xXMnEWd9kaQvy/SPLVzBHVfnjOwMWF0SFgrAKl8lgRoKIdQHZc7mY4n8EfUT8LJPyGM36WaaNJMscXaqic9KuaEllO+27iy7TniecBLbxzm1iPon7g4/bCr2UVA1fbBmZ8onCxNUDBlZYCUSvmmWilSpVks1xBM5DMAC4x3C10LvASIwbN840aBBvsG9zjf2JQcbN06xZMxldsBzX9lS4hnHBJdS4cWPJoFGjRmbdunXSw6dujEaoeyxlH7tEveo1Aof/uYg5ccDdBgOQTPj94X6lw6CiCKQCgYQjANwe9GDZBRxPmBglNHRBETC5+OKLRenTZgzAO++8Y5jkPemkk0z58uVlKSf3ULq4ZmxPmtESLhx7TprcCD55fPtTp04VJc58AiuCEOIy8cfohAlbhPq0bdtW/PtlypSRyUTmKFTSh8DhoXdzTH13HQD2f9j5nvTVWEvOZgQSMoKx1p3wD/iwY61D/8c//mFYJcQkZ7ZvCEv2JUDR08tPNuRKlk+y+wwXGXU5g/Ile4bhLGxZTpdPsmdi3XfrAsIIlZxZMNyCsXDK6zU30UBxDzKC85P9jO8NnQqWg/spzCUxp+aXYHCLFi0qq+X8dAGlsp3oo0ST2glHAKwywYVAj5WJYCZB6Ul+9tlnsiSSpY74tQu68ucLynDdD8EHnBvlT50wTPlV/n60TctQBBQBfxFIaACoCitIypYta9gR+9xzz8mkDL0BJj5ZsYLrQ0URUAQUAUUgeAgkNQA0qWfPnvLH0jNWoZxxxhlKAh+8d601VgQUAUUgAgFXBsA+gT8p1lyAva+fioAioAgoAsFBIOEy0OA0Q2uqCCgCioAikFsEcjUCyG3mmr7gIrCmbi1fN/Gw5JUAd3Yzjx/Is/8FtyjB+FQUgSAioCOAIL41rbMioAgoAh4goCMAD0DULA5FoNLS36lDD72jVwoSAm72NhQkPDKtrToCyLQ3ovVRBBQBRcAnBNQA+AS0FqMIKAKKQKYhoAYg096I1kcRUAQUAZ8QUAPgE9BajCKgCCgCmYaAGoBMeyNaH0VAEVAEfEJADYBPQPtVzJYtWyTkdHR5kPZYInhoIoleCr/Ahg0bJCn3/YwwGV0/PVcEFAH/EVAD4D/mKS0RpQ4JTbTAIwBbGAJzGAaAz48++n25Jvd1Q1M0agXj/Ke33zI7r2jt6ya6vCK7ZMkS4dywHZe85qPP/Y6A7gMogN+Eu+++2xQuXLgAtlybHBOBgwdNiPwZDlG4QWMmyZSLMOCx+xpeDJX8I6AGIP8YBi6H6667zowYMSJpvVu3bh0m5IDN7JFHHkn6jCYILgK7unT2nC605jG/8wl7hQrKHzn55JMP4eb2qoxEBCpeleHMB46PaJ5x5/38HB84cCDh42oAEsITzJu4daJpPPPi32/evLn56aefBASIgNzkAVuVX+Q4wXw7mVvrY5r+xXMD0O600nluMERG0cxcX3/9tbg4UWxuvo+5KRxFXKhQId9HGLC8JVPUuWmHM22ykZIaACdaWXIMV/DDDz8c0Zq8EPfcdNNNEXm4pYRUAxABW2BOjr+mizkspAS9lH41quY5u1hUie+9954YAOaw9u3bl+e8Yz0IJSQGgLyjDU+s9F5dw9B53RZbt2QUtWoALFJZ9HnEEUcYehVOoWeuogjEQuDIMqeZYy9plvH+f+pesmRJ07FjR3PiiSfGaopeyyUCagByCZgmVwSyDYGjKlcx/AVBzjzzTKGpDUJdg1BHb8d7QWix1lERUAQUAUVAEDgsRKARWvuloggkR8DtHAArGkrOnJ08Q02R9QjkJxx0rDmAVALGHEDRokXNrl27fJ0DSGU7mQNItKpJRwCp/EZp3oqAIqAIZDACagAy+OVo1RQBRUARSCUCagBSia7mrQgoAopABiOgBiCDX45WTRFQBBSBVCKgy0BTiW4BzntN3Vrml19+8Q2Bk046SaKd+rmmoVixYrJr1M8geuzvYE+H17tgE72o448/3hx77LHm22+/TZRM7wUQAR0BBPClaZUVAUVAEfACAR0BeIGi5nEIApWW/h5m+pAbabyQnyWJaay2Fq0IpAwBHQGkDFrNWBFQBBSBzEZADUBmvx+tnSKgCCgCKUNADUDKoNWMFQFFQBHIbATUAGT2+9HaKQKKgCKQMgTUAKQMWs1YEVAEFIHMRiCtBgB2n5kzZ5qJEycayJ6TsdfkBUpLIZeXZ3lm8eLFZt26dRGPf/fdd2bBggUR1/J78muIk3XGjBmHBKGC5P3zzz/Pb/b6vCKgCCgChyCQNgMwatQoM2DAALN9+/YQF3WOeeGFF8ytt97q6eahJ554wnzwwQeHNDo3FyZNmmTuvPPOCMaeHTt2mLFjx+Ymm6RpMVTDhg07pP3z5s0z77zzTtLnNUFsBH4Y8bj5z7y54Zv333+/5+8unLkeKAIBQyAtBuCNN94wq1atMuPHjzfdu3c311xzjXnqqafEEMyZM0cg/OGHH6Q3jLK1gpLcuHGjULbZa/Zz7969Zv369WEOW9Ju3rxZ0todqRgaDM7OnTvtY/IZqyxnAhi2Hn/8ceeliONY+cKl6xx9fP/99+ERDr39/fv3R+Th9uTgwYNm27ZthtGTpa1jJ6o9Jh/a68yfsjdt2hSRhjYjYBGNh9zIkn+/fPKx+e3rLeHW0CFYvXp1+FwPFIGCjEBaNoLhPrn66quNk68SQuaBAweGCcUxCqeffrr54osvzJAhQwxK84EHHjAVKlQQl0zPnj1Ny5YtRande++9osSgicNdwjlKEIOAooNGDiahvn37SnqUI3kPHjxYttVHl1WlSiQ7Urdu3czTTz8t7qALL7ww4vsCl2esfKdPny6Kun///lI3OHkZkcDX+8orr8iIokePHhF5JTtBidM24u3v2bNHDMyzzz5rRo4cKe1p166dZDFmzBihhLzhhhvM6NGjzaxZs0zp0qUlzvnw4cPNaaedZrp06WIqV64cNgBNmjQxffr0iajCoEGDwoYEvDp06BBxP9ZJxlFPHvyv+XnFcvPfff82d55S0sBpwPv1glKQ7+xRRx3lSV6xsIx1jc4IQrl+CXHyea9eYJabOsOV62eZvE+kcOHC0hnNTV3zkzaV7aTDmEh8NwD0llHqt912W7he+LnpMSPEdDnnnHPkGGWLwuLLh3vo73//u6lZs6aht48BaNGihdmyZYsYjXHjxskzkydPNm+//bZ58MEHzVtvvSVGAqWLQsYIoJABBfcTPUGUIOIsSy44/p1wwgny3NChQ0V5OG7JXECsfMkPw4AsX75clPaKFSvEACxdutREE67bPC+//HJ7KJ8YMqvYV65cKcetWrWSe127djXkCQ4YAdIxj4LbCBcbcxVz584VEm0UBvMtjL569+4tz5crV05wQim2b9/e9OrVy9gfAQm++uorMaAc8zyKIHiSY/77w/fmt00bzeo9u82BAwekjV60he8leHmRl1tcrYF1vie3z+Y1HWVRrp/tpK7pwhaF7Keksp3J5lX9bWkIVb5Ixx13nMEtYQUlhRsCJh7YcR599FG5Va1aNUmPIsNIzJ49W5Q7N+l5r1mzxpx33nlCEv3SSy+JwkKplwsptmhZuHChXKJXi5DnokWLwgbAliU3Y/yrX7++qVWrlriCrrzyynCKePmiTPnBbN261Sxbtsx06tTJ4N6i3ijcihUrhvNwHtCOQoUKhS+h2K1gHHBh0MNndIMrCDcTdf/xxx/FzbN7927p7ZcqVUomlfkyM7eAoPzWrl0rip7zevXq8WFOOeUU6fFw31n2888/L/ftv9wwgtln0v4Z6jEf26iJOf76ruafNaqaZs2aCQ7glF8paMHgvMAsN5inkikrVj34vcIIhm5yulRjpfXyWirb6fSyxKqz7waAStDr/vjjj0316tWlTranTM+dPytEILSCIrvsssuMtc4ow1NPPVXyobdP7xfFXLVqVfP+++/bxyI+a9euLfftRaIcWnGWZa9Ff+Ii6dy5s/Tmnffi5cso4MMPP5QRD66bCRMmGAxGnTp1xLA587DHRHvkz4od8nOOC4k5EFxf9Pofe+wxSYZR5ZyeP4aUY4TRFq6f6FGF3Az9c7bf9iztvWz5PKJoMXO44z2XKFEiIUVetrRb26EIuEEgLZPA+NxxRbDskV4nwqQmI4FYw0wsZKVKlcw333wjn/yI8d/jyqHHj1sIA4DrCPeKtd64LexEbNOmTaX3e/bZZ0seuIpyu7wShYkLacqUKWFsE+WLAZg2bZqMSDBcGCdcVQ0aNAg/n5sDRkG0k14sOOFKsz4+rmFccAk1btxYsm3UqJHMl9DDBz9GI9Q9W5V9LCyLDB1ujmvTNnwLI4wrUUURUASMScsI4IwzzpDeK35qJikReroosS6hyclYcv3115v777/foLjxa7Vt29acfPLJ5tJLLzV33323ueWWW2SimFGFXTaJwn3kkUfECKCouc5kLPMM5cuXNxdddFGsohJewxV08cUXizEhYaJ8Ubq4ZmrUqCF5Yqhw4djzhAXFuMkkLJhNnTpVlDhzG7iBEIwif0wQ29EM7QQn/PtlypQRjJn7UFEEFAFFAAQOC7kJctIJBT1YljHSy3cj+O5jpWW1D5O10b1bRgD0lu2kGQqZ3ngy35ibujjTpCpfZxkcY/xYxURb3QojIghEnC4ft8860+VmDqDkzNnORzPi2Otw0AVtDsBvQphU+sZjfSHtHABzkdaLECud19dS2U70XJEiReJWOS0jAGdt6PnHUujONM7jeGnjLReLVvRMQKdCUpVvdF0xZLlR/jyPwcuv8o+uh54rAopA8BFIyxxA8GHTFigCioAiEHwE1AAE/x1qCxQBRUARyBMCagDyBJs+pAgoAopA8BFI+xxA8CHUFsRCYE3dWocEtouVzqtrrHhiIUCa1zR41RzNRxHwBQEdAfgCsxaiCCgCikDmIaAjgMx7J1lRo0pLP8qKdhSkRni9TLYgYRfUtuoIIKhvTuutCCgCikA+EVADkE8A9XFFQBFQBIKKgBqAoL45rbcioAgoAvlEQA1APgHUxxUBRUARCCoCagCC+ua03oqAIqAI5BMBXQWUTwDz+zjB6pwcCMQUgvaSaKVuxRLmEP45kUBIQzTTWHGLqEd03KREeek9RUARCD4COgJI8zsksieMXevWrZM/+JIhnrGsaG6qhwF49913kyaF19jJxGYfgEOAsNkqqUfg1xA15U+zZqaL1rByAAAOI0lEQVS+oCwpAS7w8ePHCwNeljQpo5qhI4AMeR1wJFu2M4hv4Dcg3j89dkhzbDRPuJOJoGp76yh0SN7hTHYK5C/wJRAemwiiNj1pCOtsQ98SXnrz5s3CW0BI61ijA2e+epw/BH757FOz/7kxplCL33md85db9j/NyPSee+4RNjx4RFS8RUANgLd4epJbyZIlDe4cevWwnEH+DnsaihxDAQl9v379RJGj+GG4ogdPT2nv3r2mZ8+eYjCIa44RgELS0kIy2iDW+aZNm0zz5s0NJDPkTRiFl19+2UC8YwWGNkjpEfKBTS2ZWN6FZOkK9P0QBceBdxdlHAT//GZbzDrBrEfnhM6HnwI1qh2x0mFxUqWmoh6WfpXOku2MpaKc6Dz5zaSqbdH8KNFlqwGIRiRDzlG2MH9hDCCq/vLLL4UDGQUPnzKyZMmSQ+glIZFv2LCh6dGjh/Tqr7jiiogWQVMJKxq9/htvvFFGGjCGwVTmVP48hGGhPAQeY+gUVTxAIGQAfhj2Dw8y8jaLG73NztPcGJnG4wLxtKBQZrnl2/CifIxsKiSZ0VYDkArUPciToa+ldkRpL1u2zJQtW1YUPsqa3j0GAH5lp6xZs8a0adNGLvGjgbDeKbiVkHLlygmfMG6feDJ79mxhIOM+PTBcU8mEXhRMWSoJEDjscFPsxT94pROk9PXWomrnxSyP7xHfxd27d8e8n6qLkDzt2LFDvsOMBNx8//JTF77jjHRpp5+MYAQytCOd/NQ/1rMYlkKFCsW6JdfUAMSFJr03PvvsM2N9npDI07OHkq9u3brCfbx48WJx41SuXDmC3J4vMBSbVphkdopzLiDZ8DCaZW3fvn3OrGIeazTOmLBEXjzMmMNzQekZ+XDqzuL1sJl/wgBA3+qnUB9nDzbV3y2bP5/22K/2+l2ebZcaAItEhnyivN977z0hsB83bpzU6qyzzjI7d+6UXv/NN98svZPHHnvMXHDBBWGuY1t93D+zZs0yVapUEcL4VatWyXyCvR/rk14CIw6V1CNwbNOLzNE1I0dlqS81uCUw+qCzU7x48eA2IoNrrstAM+TlNG3aVNw7V199tcH1wqRu6dKlpXb01FH2kDsznMONg28eZR8trVu3lkudO3c2r7/+ukwiJ5vQYqSBoRgwYEB0dnruMQKHFy5sjixVyuNcszc7vvvsiykcwk3FewQOCw09crzPVnNMFwLMFbAslMljpHv37ua6666TSdxEdWI5KGuunS6i6PQsH00mzAHQWys5c3aypHo/wxCIFw7auoBwQfopuIDY4+KX2KXRzK/5OQeQynbye6bjGE/UBRQPmYBex5VDT/6SSy6RzTMo5OrVqydtTfRegaQPaAJFQBEIPAJqAAL/CiMbwIQxK3xWrlwpRgDln6hXH/m0nikCikBBQkANQBa+7TJlyhj+VBQBRUARSISATgInQkfvKQKKgCKQxQjoCCCLX246m7ambq1wGAk/6sFmGsJZ+LmmgQ1vzLk4912kuq2EDGBlzH/+859UF6X5FwAEdARQAF6yNlERUAQUgVgIqAGIhYpeUwQUAUWgACCg+wAKwEv2qol79uxJmhUukc8//9ycfvrp4RDWSR/yIAG7mW3kUg+yc5UFHA5sUDr11FNdpfcikY1Y6WdYBvZ/EKvm3HPP9aIJrvPw+50SdoKgiwRitHG4XFc2HwlZpZeqnfhgaEPJx6qiGoBYqOi1PCOwceNGCTNNaOp69erlOZ8gPNisWTNpI1FTs1mGDh0q4UUWLVqUzc00ECMRHv2NN97w3dilC1h1AaULeS1XEVAEFIE0I6AGIM0vQItXBBQBRSBdCBxxf0jSVbiWm30IEE+FncjsQCaSYzYLMY9q1KgRjruUrW2FIIXosjDRZbPgi2fuiramiqEr0/DTOYBMeyNaH0VAEVAEfEJAXUA+Aa3FKAKKgCKQaQioAci0NxKg+kCd9/bbbxuWQyYS7s+ZM8d3SsFEdcrNPZbovf/++0LBScjseELo4nnz5hk3YbPj5ZHu67l5V6RN9u7T3Z545bttJxSrfMf9DEsdr86puK5zAKlAtQDkSbTRW2+91RCC4ZlnnhGfaax14jCXsayONfqjRo0y9evXN9FUk5kMFyEX4FOAOxkjsHDhQnPppZdKOAZnvadPn26GDx8ubZsyZYqE4q5Tp44zScYf5+ZdsS/glltukX0Q1apVy/i2OSvotp2jR482vFfmsh599FGhaC2VbWQ+EMKoKAK5RSBERp/zySefyGMhsu6cVq1a5YR6yhHZbNq0Keevf/1rTmjTklwPKcacwYMHR6TJ9JPQfoackMIIV7Nbt245S5cuDZ9zECIPybnyyitzQnsg5HrIWOS0bNkyJ8TaFpEuk09y+67uuuuunC5duuSAT5DEbTu3b9+ec9VVV+WEeLCleaE9AjkTJ04MUlNd1VVdQM6ugR67QgC2pG3btslqCR4oUaKEUFWGfjQRz7MpjBUVkM0gUFmuXbs2Ik2mn6xfv17qbesZqw3szp0wYYIpX768JDtw4IDZv3+/7yTqto55+czNu3rzzTcNLFa1atXKS1FpfcZtO9kUVrlyZeHhhqKVFVCdOnVKa91TUbgagFSgmuV5Qg3IsJiolFZw68BT7BR84U53D8sJ3YSTcOaR7uPQ6MZQbyvx2mCXvEKt+cQTTxh2CRctWtQ+lvGfbt8Vhv+1114zPXv2zPg2xaqg23ZCC7l582YzZMgQwzzAtddeaz744INYWQb6moaDDvTrS0/l6fFGx6JhVBC9djo6HWn8jLHiBTq5aQOTxQ8++KCEpL7nnnu8KN63PNy0k/c3aNAg069fv8C9Rwukm3aSFkNOh+bVV181PMNI9vXXX0/KrW3LCcqnGoCgvKkMqufJJ58sk6IoPEs3yY8leoKMePmffvppuOakOeWUU8LnQTigF+8c2XAci22NQGJ33nmnBIbr37+/KI0gtM/W0c27okdMoL/bbrtNHmNFFKNAVoNhFIIgbtpJO0hHUDiUP3LWWWeZESNGyHE2/VMXUDa9TZ/acuSRR5oLLrjAzJgxQ0p89913xSeMX5hVM1u2bJHr+IhXr15ttm7daug94juuXbu2T7X0phg4lt966y2DXx9Ft2TJEtnlTO4oRK4j9913nyiMAQMGhJWG3AjIv0Tvinbzd8YZZxgCwrGkl782bdqY0GKAwCh/XkWidjq/u3Xr1hVjt3PnTnmD8+fPlzmBgLxO19XUncCuodKETgRQ8nfccYcoOyZ5iYhJL2n58uXiBrHGYebMmWbkyJGmSJEipmzZsuahhx4yGJCgCIbrgQceEENGO9u1ayeKj/o3b95cfMSE3A2tDpImOedFnnzyyfBEeRDaG+9dDRs2zBDig2W/Tnnqqadk8r9Lly7Oyxl/HK+d0d9dJn/HjBkjS135zhIVldFvNokagGx6m2loC+vB2QuQSHAV4C4idn5QJbQcUPzeQTJeecE6G96Vm3a7bSdzXazoci5mcJN/UNKoAQjKm9J6KgKKgCLgMQI6B+AxoJqdIqAIKAJBQUANQFDelNZTEVAEFAGPEVAD4DGgmp0ioAgoAkFBQA1AUN6U1lMRUAQUAY8RUAPgMaCanSKgCCgCQUEgOAuyg4Ko1lMRSBMC7DuIjrVEoD5oDps0aZKr/ReE7yYcQnR4jzQ1TYtNEQK6DDRFwGq2ioDfCJxzzjlSZNWqVcNFf/bZZ7KjFQ4DeBncKHTIT9gJy2Y+NvepZC8COgLI3nerLSuACLRu3Vp2rDqbzs7Xyy67TMI3cD+ZsLkvqExfydqm9yMR0DmASDz0TBHIOgQIWUEU1q+++ircNuLiE9qBsNVXXHGFIdwDbh+Yz0JkL5Lub3/7m5k7d274mRdeeMFcffXVBiMCqxZhMlSCjYAagGC/P629IpAQAUIZQGdIKA6CtyEhViyJUURk086dOwvZycCBAw0Kn1AX1oUEIUrJkiXlmT59+pi+fftK2nr16skoI8SYJff0X4ARcMUbpokUAUUg4xEIhS/OCcWsyalQoYL8nXbaaTmhIG45IUWeE+q9h+sfim6ac/3114epOrkR4j3OCUU+lTSh0UFOSKXlhNxAcs5nKBBezuTJk+Wcf6HRhKQJRQcNX9OD4CGgcwABNt5adUUgGoGGDRsKdSHunGnTpknPH7rK6tWrh5Pi9mncuLFZsGCBTBBD0zlv3rxwbz+c8H8HRMkMqTbz0UcfmVWrVoVvE9yPe40aNQpf04NgIaAGIFjvS2urCCREgJVA+OmRjh07mvbt25tLLrnELFu2LMxZDEkPq4IIYw3fQf369SXiZbyJXyaFcQ1B/uMMd92rVy9TqVKlhPXRm5mNgBqAzH4/WjtFIM8IoKxHjx4tRCZt27Y1S5cuFf6G+++/32Ao6PVbxqvFixeHaT6tkqfXj0AEQ/hkVhLh/0eYW2BkoctEBY7A/tNJ4MC+Oq24IpAcAbgaMAK4byCrR5jYZQIYBiyU/PTp08PuIu5D3oOsWLHC/PDDD7KJDHpESH8gSIcFDSMCBeYJJ5wgafVfMBFQAxDM96a1VgRcI9CyZUvDCODee+8VGsvbb79dCE7YJQznMYxtLAPdsGGD+fe//y1KnXkCXEiQ3MMGhpGA95iVQTwDReLEiRPl2HVFNGHGIaA7gTPulWiFFAF/ECBsBPMAxx9/fMwCYUErVKhQ2E1EIkYErP/PNmrEmAAUgItqAArAS9YmKgKKgCIQCwF1AcVCRa8pAoqAIlAAEFADUABesjZREVAEFIFYCKgBiIWKXlMEFAFFoAAgoAagALxkbaIioAgoArEQUAMQCxW9pggoAopAAUDg/wGbdwr8DcfkxAAAAABJRU5ErkJggg==" /><!-- --></p>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
