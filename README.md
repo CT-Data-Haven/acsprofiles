@@ -30,3 +30,5 @@ To install this package:
 ``` r
 devtools::install_github("CT-Data-Haven/acsprofiles")
 ```
+
+[See the vignette](https://github.com/CT-Data-Haven/acsprofiles/blob/master/simple_profile_gh.md) for a common, simplified workflow using several of the functions here.
