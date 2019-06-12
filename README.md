@@ -4,6 +4,8 @@ acsprofiles
 Create profiles of ACS data for variety of geographies in R
 -----------------------------------------------------------
 
+**A far superior version ** of this package is our `cwi` package 
+
 This R package was developed for our work in-house at [DataHaven](http://www.ctdatahaven.org/), including speeding up and making reproducible the process of generating profiles ([example](https://github.com/CT-Data-Haven/WebsiteIndicators/blob/master/NeighborhoodProfiles/2015_5Y_NH_neighborhood_Git.csv)). These functions are also useful for quickly getting neighborhood data for visualization or other projects. It includes functions to pull tables from the ACS API via the `acs` package, aggregate over custom geographies such as groups of tracts or towns, and arrange columns for output.
 
 Data available in the package:
